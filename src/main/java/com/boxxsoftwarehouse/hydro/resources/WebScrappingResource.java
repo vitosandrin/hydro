@@ -9,6 +9,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,11 +17,12 @@ import com.boxxsoftwarehouse.hydro.models.WebScrappingShopModel;
 import com.boxxsoftwarehouse.hydro.services.WebScrappingService;
 
 @RestController
+@RequestMapping(value = "/scrapping")
 public class WebScrappingResource {
 	@Autowired
 	private WebScrappingService webScrappingService;
 
-	@GetMapping("/scrapping/google")
+	@GetMapping(value = "/google")
 	public ResponseEntity<List<WebScrappingShopModel>> searchResults(@RequestParam("term") String searchTerm) {
 		Document document = this.webScrappingService.searchOnGoogleShop(searchTerm);
 
