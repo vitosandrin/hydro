@@ -1,7 +1,6 @@
 package com.boxxsoftwarehouse.hydro.resources;
 
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +22,14 @@ public class WebScrappingResource {
 				"div.sh-dgr__gr-auto:nth-child(7) > div:nth-child(1) > div:nth-child(2) > span:nth-child(2) > a:nth-child(1) > div:nth-child(1) > h3:nth-child(1)")
 				.first().text();
 		String price = document.select("span.QIrs8:nth-child(4)").first().text();
-		return ResponseEntity.ok().body("First Result Title: " + title + " and your price is: " + price);
+		String ratingValue = document.select(
+				"div.sh-dgr__gr-auto:nth-child(7) > div:nth-child(1) > div:nth-child(2) > span:nth-child(2) > a:nth-child(1) > div:nth-child(2) > div:nth-child(1) > span:nth-child(1) > span:nth-child(1)")
+				.first().text();
+		String merchan = document.select(
+				"span.eaGTj:nth-child(2) > div:nth-child(2) > a:nth-child(1) > div:nth-child(3)")
+				.first().text();
+
+		return ResponseEntity.ok().body("First Result Title: " + title + " and your price is: " + price
+				+ " your rating value is: " + ratingValue + " Owner " + merchan);
 	}
 }
