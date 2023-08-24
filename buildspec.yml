@@ -10,5 +10,5 @@ phases:
       - echo Build completed successfully
 artifacts:
   files:
-    - target/hydro-app.jar
+    - target/hydro.jar
   discard-paths: yes
