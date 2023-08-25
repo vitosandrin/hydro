@@ -4,10 +4,12 @@ phases:
     commands:
       - echo Packaging JAR file...
       - mvn clean package
+      - cp -r .platform target/
   post_build:
     commands:
       - echo Build complete.
 artifacts:
   files:
     - target/*.jar
+    - target/.platform/**/*
   discard-paths: yes
