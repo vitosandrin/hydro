@@ -44,6 +44,7 @@ public class WebScrappingResource {
 	        shopModels.add(shopModel);
 	    }
 
+	    System.out.println("LOG DE PASSAGEM: " + shopModels + " PASSOU AQUI ");
 		return ResponseEntity.ok().body(shopModels);
 	}
 }
