@@ -45,7 +45,7 @@ public class WebScrappingResource {
 
 		return ResponseEntity.ok().body(shopModels);
 	}
-
+//
 	@GetMapping("/test")
 	public ResponseEntity<WebScrappingShopModel> testRoute() {
 
