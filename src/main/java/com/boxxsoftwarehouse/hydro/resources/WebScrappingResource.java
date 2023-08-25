@@ -26,24 +26,32 @@ public class WebScrappingResource {
 	public ResponseEntity<List<WebScrappingShopModel>> searchResults(@RequestParam("term") String searchTerm) {
 		Document document = this.webScrappingService.searchOnGoogleShop(searchTerm);
 
-		
 		Elements titleElements = document.getElementsByClass("aULzUe IuHnof");
 		Elements merchantElements = document.getElementsByClass("E5ocAb");
-        Elements priceElements = document.select("span.QIrs8:matches(^R\\$)");
-        
+		Elements priceElements = document.select("span.QIrs8:matches(^R\\$)");
+
 		List<WebScrappingShopModel> shopModels = new ArrayList<>();
-		 // Determine the maximum number of elements available for iteration
-	    int maxIteration = Math.min(titleElements.size(), Math.min(priceElements.size(), merchantElements.size()));
+		// Determine the maximum number of elements available for iteration
+		int maxIteration = Math.min(titleElements.size(), Math.min(priceElements.size(), merchantElements.size()));
 
-	    for (int i = 0; i < maxIteration; i++) {
-	        String title = titleElements.get(i).text();
-	        String price = priceElements.get(i).text();
-	        String merchant = merchantElements.get(i).text();
+		for (int i = 0; i < maxIteration; i++) {
+			String title = titleElements.get(i).text();
+			String price = priceElements.get(i).text();
+			String merchant = merchantElements.get(i).text();
 
-	        WebScrappingShopModel shopModel = new WebScrappingShopModel(title, price, merchant);
-	        shopModels.add(shopModel);
-	    }
+			WebScrappingShopModel shopModel = new WebScrappingShopModel(title, price, merchant);
+			shopModels.add(shopModel);
+		}
 
 		return ResponseEntity.ok().body(shopModels);
 	}
+
+	@GetMapping("/test")
+	public ResponseEntity<WebScrappingShopModel> testRoute() {
+
+		WebScrappingShopModel shopModel = new WebScrappingShopModel("titlte", "12313", "vendedor");
+
+		return ResponseEntity.ok().body(shopModel);
+	}
+
 }
