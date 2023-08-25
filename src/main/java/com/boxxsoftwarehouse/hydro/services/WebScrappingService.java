@@ -13,7 +13,7 @@ public class WebScrappingService {
 	public Document searchOnGoogleShop (String searchTerm) {
 		Document document = null;
 		try {
-			document = Jsoup.connect("https://google.com.br/search?q=" + searchTerm + "&tbm=shop&source=lnms").userAgent(USER_AGENT).get();
+			document = Jsoup.connect("https://google.com.br/search?q=" + searchTerm + "&tbm=shop&source=lnms").get();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

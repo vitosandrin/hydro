@@ -17,12 +17,12 @@ import com.boxxsoftwarehouse.hydro.models.WebScrappingShopModel;
 import com.boxxsoftwarehouse.hydro.services.WebScrappingService;
 
 @RestController
-@RequestMapping(value = "/scrapping")
+@RequestMapping("/scrapping")
 public class WebScrappingResource {
 	@Autowired
 	private WebScrappingService webScrappingService;
 
-	@GetMapping(value = "/google")
+	@GetMapping("/google")
 	public ResponseEntity<List<WebScrappingShopModel>> searchResults(@RequestParam("term") String searchTerm) {
 		Document document = this.webScrappingService.searchOnGoogleShop(searchTerm);
 

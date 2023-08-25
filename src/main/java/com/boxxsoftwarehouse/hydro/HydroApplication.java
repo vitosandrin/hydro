@@ -9,5 +9,4 @@ public class HydroApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HydroApplication.class, args);
 	}
-
 }
